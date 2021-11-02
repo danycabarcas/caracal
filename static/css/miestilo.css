@@ -1,0 +1,45 @@
+/* h1 {
+   font-family: serif;
+   text-align: center;
+   color: #377ba8;
+   background-color: lightgray;
+}
+form {
+   width: 350px;
+   padding: 16px;
+   border-radius: 10px;
+   margin: auto;
+   background-color: #ccc;
+}
+form input {
+   border-color: white;
+   border-style: none;
+}
+button {
+   text-align: center;
+   font-weight: bold;
+} */
+
+/* ! CLASES */
+
+.error_message_login {
+   padding: 5px;
+   background-color: #e76d6d;
+   box-sizing: border-box;
+   border-radius: 12px;
+   margin: 5px 0;
+}
+
+.like-publicacion {
+   color: red !important;
+}
+
+.editar_perfil_user {
+   box-sizing: border-box;
+   padding: 6px;
+   margin: 2px auto;
+   border-radius: 12px;
+   border: 1px solid gray;
+   background-color: #10da43;
+   color: white;
+}

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caracal Caracal Red Social de Imágenes</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="static/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="static/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="static/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="static/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="static/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="static/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="static/plugins/summernote/summernote-bs4.min.css">
+
+  <base href="https://caracalsocial.herokuapp.com/" />
+
+</head>
+
+<div class="wrapper"><!-- INICIO-->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <a href="#" class="brand-link">
+    <img src="{{ url_for('static', filename='imagenes/caracal-logo-web.png') }}" alt="Caracal Caracal Logo" width="220">
+  </a>
+        </div>
+        <div class="col-sm-6">
+      
+      
+      
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <!-- Left navbar links -->
+  
+  
+
+  <!-- Right navbar links -->
+  <ul class="navbar-nav ml-auto">
+    <!-- Navbar Search -->
+  <li class="nav-item">
+  <a class="nav-link" href="/home" role="button">
+        <i class="fas fa-home"></i>
+      </a>
+  </li>
+  
+  <li class="nav-item">
+  <a class="nav-link"  href="/feed/{{ usuario_activo['usuario'] }}" role="button">
+        <i class="fas fa-user-alt"></i>
+      </a>
+  </li>
+
+  <li class="nav-item">
+  <a class="nav-link"  href="/subir_publicacion" role="button">
+        <i class="fas fa-plus"></i>
+      </a>
+  </li>
+            
+  <!-- <li class="nav-item">
+    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+      <i class="fas fa-search"></i>
+    </a>
+    <div class="navbar-search-block">
+      <form class="form-inline">
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </li> -->
+
+            <!-- Notifications Dropdown Menu -->
+  <!-- Notifications Dropdown Menu -->
+  <li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+      <i class="far fa-bell"></i>
+      <!-- <span class="badge badge-warning navbar-badge">15</span> -->
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+      <span class="dropdown-item dropdown-header">Notificaciones</span>
+      <div class="dropdown-divider"></div>
+      <a href="mensajes" class="dropdown-item">
+        <i class="fas fa-envelope mr-2"></i>Mensajes nuevos
+        <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
+      </a>
+      <div class="dropdown-divider"></div>
+      <a href="solicitud_amigos" class="dropdown-item">
+        <i class="fas fa-users mr-2"></i> Solicitudes de amistad
+        <!-- <span class="float-right text-muted text-sm">12 hours</span> -->
+      </a>
+      <!-- <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a> -->
+    </div>
+  </li>
+    
+  <li class="nav-item">
+    <a class="nav-link"  href="/salir" role="button">
+          <i class="fas fa-power-off"></i>
+        </a>
+  </li>
+  
+  </ul>
+</nav>
+      
+      
+      
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">User Profile</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+</section>
+	
+	
+	<!-- ###### -->
+	
+	<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-warning card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                        src="{{ url_for('static', filename= usuario_activo['url_foto_perfil']) }}"
+                        alt="User profile picture">
+
+                </div>
+
+                <h3 class="profile-username text-center">{{ usuario_activo['nombre'] }}</h3>
+
+                <p class="text-muted text-center">Biografia</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b><a href="perfil_amigos">Amigos</b> </a><a class="float-right">{{ listado_amigos|length}}</a>
+                  </li>
+                </ul>
+
+                {% if perfil_propio %}
+                <a
+                  href="/perfil_edit"
+                  class="btn btn-block btn-success btn-xs"
+                >
+                  Editar
+                </a>
+              {% endif %}
+                
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Mi Perfil</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
+
+                <p class="text-muted">Santa Marta, Magdalena</p>
+
+                            
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Acerca de mi</strong>
+
+                <p class="text-muted">Me encanta viajar, y conocer personas</p>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="row">
+                <div class="col-12">
+                  <!-- general form elements -->
+                  <div class="card card-warning">
+                    <div class="card-header">
+                      <h3 class="card-title">Ellos quieren ser tus amigos</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <ul class="users-list clearfix">
+
+                      {% for solicitud in listado_solicitudes %}
+                        {% if solicitud["id_user_a"]["id"] == usuario_activo["id"] %}
+                          <li>
+                            <img src="{{ url_for('static', filename=solicitud['id_user_b']['url_foto_perfil'] ) }}" alt="User Image">
+                            <a class="users-list-name" href="/feed/{{ solicitud['id_user_b']['usuario'] }}">{{ solicitud['id_user_b']['nombre'] }}</a>
+                            <span class="users-list-date">{{ solicitud["fecha_solicitud"] }}</span>
+
+                            {% if solicitud["estado"] == "pendiente" %}
+                              <button class="btn btn-info btn-sm" readonly>
+                                <i class="fas fa-check">
+                                </i>
+                                Solicitud enviada
+                              </button>
+                            {% elif solicitud["estado"] == "activo" %}
+                              <button class="btn btn-info btn-sm" readonly>
+                                <i class="fas fa-check">
+                                </i>
+                                Amigos
+                              </button>
+
+                              <form action="/responder_solicitud_amistad" method="post">
+                                <input type="text" name="respuesta_solicitud" value="rechazado" hidden>
+                                <input type="text" name="id_solicitud" value="{{ solicitud['id'] }}" hidden>
+                                <button class="btn btn-danger btn-sm" type="submit">
+                                    <i class="fas fa-trash">
+                                    </i>
+                                    Dejar de ser amigos
+                                </button>
+                              </form>
+
+                            {% elif solicitud["estado"] == "rechazado" %}
+                              <form action="/responder_solicitud_amistad" method="post">
+                                <input type="text" name="respuesta_solicitud" value="pendiente" hidden>
+                                <input type="text" name="id_solicitud" value="{{ solicitud['id'] }}" hidden>
+                                <input type="text" name="id_usuario_b" value="{{ solicitud['id_user_b']['id'] }}" hidden>
+                                <button class="btn btn-info btn-sm" type="submit">
+                                    <i class="fas fa-plus">
+                                    </i>
+                                    Mandar solicitud de amistad
+                                </button>
+                              </form>
+                            {% endif %}
+                          </li>
+                        {% endif %}
+                        
+                        {% if solicitud["id_user_b"]["id"] == usuario_activo["id"] %}
+                            <li>
+                              <img src="{{ url_for('static', filename=solicitud['id_user_a']['url_foto_perfil'] ) }}" alt="User Image">
+                              <a class="users-list-name" href="/feed/{{ solicitud['id_user_a']['usuario'] }}">{{ solicitud['id_user_a']['nombre'] }}</a>
+                              <span class="users-list-date">{{ solicitud["fecha_solicitud"] }}</span>
+                          {% if solicitud["estado"] == "pendiente" %}
+                            <form action="/responder_solicitud_amistad" method="post">
+                              <input type="text" name="respuesta_solicitud" value="activo" hidden>
+                              <input type="text" name="id_solicitud" value="{{ solicitud['id'] }}" hidden>
+                              <button class="btn btn-warning btn-sm" type="submit">
+                                <i class="fas fa-check">
+                                </i>
+                                Aceptar
+                              </button>
+                            </form>
+                            
+                            <form action="/responder_solicitud_amistad" method="post">
+                              <input type="text" name="respuesta_solicitud" value="rechazado" hidden>
+                              <input type="text" name="id_solicitud" value="{{ solicitud['id'] }}" hidden>
+                              <button class="btn btn-danger btn-sm" type="submit">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Rechazar
+                              </button>
+                            </form>
+                          {% elif solicitud["estado"] == "activo" %}
+                            <button class="btn btn-info btn-sm" readonly>
+                              <i class="fas fa-check">
+                              </i>
+                              Amigos
+                            </button>
+
+                            <form action="/responder_solicitud_amistad" method="post">
+                              <input type="text" name="respuesta_solicitud" value="rechazado" hidden>
+                              <input type="text" name="id_solicitud" value="{{ solicitud['id'] }}" hidden>
+                              <button class="btn btn-danger btn-sm" type="submit">
+                                  <i class="fas fa-trash">
+                                  </i>
+                                  Dejar de ser amigos
+                              </button>
+                            </form>
+                          {% elif solicitud["estado"] == "rechazado" %}
+                            <form action="/responder_solicitud_amistad" method="post">
+                              <input type="text" name="respuesta_solicitud" value="pendiente" hidden>
+                              <input type="text" name="id_solicitud" value="{{ solicitud['id'] }}" hidden>
+                              <input type="text" name="id_usuario_b" value="{{ solicitud['id_user_a']['id'] }}" hidden>
+                              <button class="btn btn-info btn-sm" type="submit">
+                                  <i class="fas fa-plus">
+                                  </i>
+                                  Mandar solicitud de amistad
+                              </button>
+                            </form>
+                          {% endif %}
+                            </li>
+                        {% endif %}
+
+
+                      {% endfor %}
+
+                     
+                    </ul>
+                    <!-- /.users-list -->
+                  </div>
+                  <!-- /.card-body -->
+                  </div><!-- xxxxx-->
+                  <!-- /.card -->
+                  
+          
+                  <!-- /.card -->
+                </div>
+                <!-- /.col -->
+              </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+	
+	
+	
+	<!-- #### -->
+	
+	
+	
+</div><!-- FIN INICIO-->
+
+<!-- jQuery -->
+<script src="static/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="static/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="static/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="static/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="static/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="static/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="static/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="static/plugins/moment/moment.min.js"></script>
+<script src="static/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="static/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="static/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="static/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="static/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="static/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="static/dist/js/pages/dashboard.js"></script>
+
+<script>
+    $(function () {
+      // Summernote
+      $('#summernote2').summernote()
+  
+      // CodeMirror
+      CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+        mode: "htmlmixed",
+        theme: "monokai"
+      });
+    })
+  </script>	
+</body>
+</html>

@@ -1,0 +1,35 @@
+NOTA IMPORTANTE
+ENTREGA SPRING #4
+
+GRUPO #10
+
+Integrantes:
+	- Andrés Felipe Aguilar
+	- Andrea Rodriguez
+	- Daniel Cabarcas
+	- Hernan Ortega
+	- Winston Lozano
+
+Nota sobre el proyecto:
+
+La base de datos incluye varios perfiles de prueba (con fotos subidas, mensajes entre ellos y solicitudes de amistad entre sí) para utilizar, sin embargo se pueden crear desde cero en la ruta /registro
+
+Perfiles de prueba (email, contraseña):
+
+SUPER ADMINISTRADOR:
+	sadmin@gmail.com
+	1234
+
+ADMINISTRADOR
+	admin@gmail.com
+	1234
+
+USUARIOS FINALES
+	andres@gmail.com
+	1234
+
+	andrea@gmail.com
+	1234
+
+	fabian@gmail.com
+	1234

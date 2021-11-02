@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{{ url_for('static', filename='js/validacion.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/miestilo.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <section class="content">
+        { % for message in get_flashed_messajes() % }
+        <div class="flash">
+            {{ message }}
+        </div>
+        { % endfor % }
+    </section>
+    <p>
+        a
+    </p>
+
+    <h1>Registro para vacunación COVID-19</h1>
+    <form name="formRegistro" onsubmit="validar_formulario()" action="{{ url_for('register') }}">
+        <label for="">Nombre: </label><input type="text" id="nombre" placeholder="Escribir Nombre">
+        <br><br><label for="">Usuario: </label>
+        <input type="text" id="usuario" required placeholder="Escribir Usuario">
+        <br><br><label for="">Sexo: </label>
+        <input type="radio" name="sexo" /> Hombre
+        <input type="radio" name="sexo" /> Mujer
+        <br> <br><label for="">Correo: </label>
+        <input type="email" id="email" placeholder="Escribir Email">
+        <br><br><label for="">Contraseña: </label>
+        <input type="password" id="password" placeholder="Password">
+        <img src="static/imagenes/view.png" alt="Visualizar" onmouseover="mostrarPassword()" onmouseout="ocultarPassword()">
+       <br> <br><input type="checkbox" name="" id="acepto">Declaro haber leído y aceptar las
+       condiciones generales del programa y la normativa sobre protección de datos.
+       <br> <br><button type="submit">Enviar</button>
+    </form>
+    
+</body>
+
+</html>

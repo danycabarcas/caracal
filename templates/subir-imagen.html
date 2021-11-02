@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caracal Caracal Red Social de Imágenes</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="static/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="static/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="static/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="static/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="static/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="static/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="static/plugins/summernote/summernote-bs4.min.css">
+
+  <base href="https://caracalsocial.herokuapp.com/" />
+
+</head>
+
+<div class="wrapper"><!-- INICIO-->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <a href="#" class="brand-link">
+    <img src="{{ url_for('static', filename='imagenes/caracal-logo-web.png') }}" alt="Caracal Caracal Logo" width="220">
+  </a>
+        </div>
+        <div class="col-sm-6">
+      
+      
+      
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <!-- Left navbar links -->
+  
+  
+
+  <!-- Right navbar links -->
+  <ul class="navbar-nav ml-auto">
+    <!-- Navbar Search -->
+  <li class="nav-item">
+  <a class="nav-link" href="/home" role="button">
+        <i class="fas fa-home"></i>
+      </a>
+  </li>
+  
+  <li class="nav-item">
+  <a class="nav-link"  href="/feed/{{ usuario_activo['usuario'] }}" role="button">
+        <i class="fas fa-user-alt"></i>
+      </a>
+  </li>
+
+  <li class="nav-item">
+  <a class="nav-link"  href="/subir_publicacion" role="button">
+        <i class="fas fa-plus"></i>
+      </a>
+  </li>
+            
+  <!-- <li class="nav-item">
+    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+      <i class="fas fa-search"></i>
+    </a>
+    <div class="navbar-search-block">
+      <form class="form-inline">
+        <div class="input-group input-group-sm">
+          <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </li> -->
+
+            <!-- Notifications Dropdown Menu -->
+  <!-- Notifications Dropdown Menu -->
+  <li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+      <i class="far fa-bell"></i>
+      <!-- <span class="badge badge-warning navbar-badge">15</span> -->
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+      <span class="dropdown-item dropdown-header">Notificaciones</span>
+      <div class="dropdown-divider"></div>
+      <a href="mensajes" class="dropdown-item">
+        <i class="fas fa-envelope mr-2"></i>Mensajes nuevos
+        <!-- <span class="float-right text-muted text-sm">3 mins</span> -->
+      </a>
+      <div class="dropdown-divider"></div>
+      <a href="solicitud_amigos" class="dropdown-item">
+        <i class="fas fa-users mr-2"></i> Solicitudes de amistad
+        <!-- <span class="float-right text-muted text-sm">12 hours</span> -->
+      </a>
+      <!-- <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a> -->
+    </div>
+  </li>
+    
+  <li class="nav-item">
+    <a class="nav-link"  href="/salir" role="button">
+          <i class="fas fa-power-off"></i>
+        </a>
+  </li>
+  
+  </ul>
+</nav>
+      
+      
+      
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">User Profile</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+</section>
+	
+	
+	
+	<!-- ###### -->
+	
+	<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-warning card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="{{ url_for('static', filename=usuario_activo['url_foto_perfil']) }}"
+                       alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">{{ usuario_activo['nombre'] }}</h3>
+
+                <p class="text-muted text-center">Biografia</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b><a href="perfil_amigos">Amigos</b> </a><a class="float-right">{{ listado_amigos|length}}</a>
+                  </li>
+                </ul>
+
+                
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- About Me Box -->
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Mi Perfil</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                
+
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
+
+                <p class="text-muted">Santa Marta, Magdalena</p>
+
+                            
+
+                <hr>
+
+                <strong><i class="far fa-file-alt mr-1"></i> Acerca de mi</strong>
+
+                <p class="text-muted">Me encanta viajar, y conocer personas</p>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="row">
+                <div class="col-12">
+                  <!-- general form elements -->
+                  <div class="card card-warning">
+                    <div class="card-header">
+                      <h3 class="card-title">Publicar Fotos</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- formulario img start -->
+                    
+                    <div class="col-md-12">
+                        <div class="card card-default">
+                          <div class="card-header">
+                            <h3 class="card-title">Selecciona la imagénes que deseas subir</small></h3>
+                          </div>
+                          <form action="/subir_publicacion" method="post" enctype="multipart/form-data">
+
+                            <div class="card-body">
+                              <input name="descripcion" class="form-control form-control-sm" type="text" placeholder="Añade un descripción">
+                              <input type="file" id="myFile" name="file">
+                            </div>
+
+                            <input type="submit" value="Subir">
+                          </form>
+                          <div class="card-body">
+                            <div id="actions" class="row">
+                              <div class="col-lg-6">
+                                
+                              </div>
+                              <div class="col-lg-6 d-flex align-items-center">
+                                <div class="fileupload-process w-100">
+                                  <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="table table-striped files" id="previews">
+                              <div id="template" class="row mt-2">
+                                <div class="col-auto">
+                                    <span class="preview"><img src="data:," alt="" data-dz-thumbnail /></span>
+                                </div>
+                                <div class="col d-flex align-items-center">
+                                    <p class="mb-0">
+                                      <span class="lead" data-dz-name></span>
+                                      (<span data-dz-size></span>)
+                                    </p>
+                                    <strong class="error text-danger" data-dz-errormessage></strong>
+                                </div>
+                                <div class="col-4 d-flex align-items-center">
+                                    <div class="progress progress-striped active w-100" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                      <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                                    </div>
+                                </div>
+                                <div class="col-auto d-flex align-items-center">
+                                  <div class="btn-group">
+                                    <button class="btn btn-primary start">
+                                      <i class="fas fa-upload"></i>
+                                      <span>Subir</span>
+                                    </button>
+                                    <button data-dz-remove class="btn btn-warning cancel">
+                                      <i class="fas fa-times-circle"></i>
+                                      <span>Cancelar</span>
+                                    </button>
+                                    <button data-dz-remove class="btn btn-danger delete">
+                                      <i class="fas fa-trash"></i>
+                                      <span>Eliminar</span>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                        </div>
+                        <!-- /.card -->
+                      </div>
+                    
+
+
+
+
+
+                  </div>
+                  <!-- /.card -->
+                  
+          
+                  <!-- /.card -->
+                </div>
+                <!-- /.col -->
+              </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+	
+	
+	
+	<!-- #### -->
+	
+	
+	
+</div><!-- FIN INICIO-->
+
+<!-- jQuery -->
+<script src="static/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="static/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="static/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="static/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="static/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="static/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="static/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="static/plugins/moment/moment.min.js"></script>
+<script src="static/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="static/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="static/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="static/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="static/dist/js/adminlte.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="static/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="static/dist/js/pages/dashboard.js"></script>
+<script src="static/plugins/dropzone/min/dropzone.min.js"></script>
+
+<script>
+    $(function () {
+      // Summernote
+      $('#summernote2').summernote()
+  
+      // CodeMirror
+      CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+        mode: "htmlmixed",
+        theme: "monokai"
+      });
+    })
+
+
+  // DropzoneJS Demo Code Start
+  Dropzone.autoDiscover = false
+
+  // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+  var previewNode = document.querySelector("#template")
+  previewNode.id = ""
+  var previewTemplate = previewNode.parentNode.innerHTML
+  previewNode.parentNode.removeChild(previewNode)
+
+  var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+    url: "/target-url", // Set the url
+    thumbnailWidth: 80,
+    thumbnailHeight: 80,
+    parallelUploads: 20,
+    previewTemplate: previewTemplate,
+    autoQueue: false, // Make sure the files aren't queued until manually added
+    previewsContainer: "#previews", // Define the container to display the previews
+    clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+  })
+
+  myDropzone.on("addedfile", function(file) {
+    // Hookup the start button
+    file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
+  })
+
+  // Update the total progress bar
+  myDropzone.on("totaluploadprogress", function(progress) {
+    document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+  })
+
+  myDropzone.on("sending", function(file) {
+    // Show the total progress bar when upload starts
+    document.querySelector("#total-progress").style.opacity = "1"
+    // And disable the start button
+    file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+  })
+
+  // Hide the total progress bar when nothing's uploading anymore
+  myDropzone.on("queuecomplete", function(progress) {
+    document.querySelector("#total-progress").style.opacity = "0"
+  })
+
+  // Setup the buttons for all transfers
+  // The "add files" button doesn't need to be setup because the config
+  // `clickable` has already been specified.
+  document.querySelector("#actions .start").onclick = function() {
+    myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+  }
+  document.querySelector("#actions .cancel").onclick = function() {
+    myDropzone.removeAllFiles(true)
+  }
+  // DropzoneJS Demo Code End
+
+  </script>	
+</body>
+</html>
